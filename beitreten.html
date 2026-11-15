@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Zischi beitreten</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f7f4ee;color:#25382e;margin:0;line-height:1.6}
+  main{max-width:520px;margin:0 auto;padding:40px 20px 64px;text-align:center}
+  h1{color:#284f3d;font-size:28px}
+  .code{display:inline-block;font-size:24px;font-weight:700;letter-spacing:2px;color:#284f3d;background:#faf8f5;padding:10px 18px;border-radius:12px;margin:8px 0 20px}
+  .btn{display:inline-block;background:#284f3d;color:#fff;text-decoration:none;font-weight:600;padding:14px 24px;border-radius:12px}
+  .stand{color:#566055;font-size:14px;margin-top:28px}
+  a{color:#284f3d}
+</style>
+</head>
+<body><main>
+<h1>Zischi beitreten</h1>
+<div id="mitCode" hidden>
+  <p>Dein Beitrittscode:</p>
+  <div class="code" id="code"></div><br>
+  <a class="btn" id="oeffnen" href="#">In der Zischi-App öffnen</a>
+  <p class="stand">Öffnet sich die App nicht? Installiere Zischi und gib den Code bei der Registrierung unter „Beitreten" ein.</p>
+</div>
+<p id="ohneCode" hidden>Dieser Link enthält keinen Beitrittscode. Frage in deiner Einrichtung nach einem neuen QR-Code.</p>
+<p class="stand"><a href="datenschutz.html">Datenschutz</a> · <a href="impressum.html">Impressum</a></p>
+<script>
+  var c = new URLSearchParams(location.search).get("bc");
+  if (c) {
+    var link = "zischi://konto-aktivieren?bc=" + encodeURIComponent(c);
+    document.getElementById("code").textContent = c;
+    document.getElementById("oeffnen").href = link;
+    document.getElementById("mitCode").hidden = false;
+    location.href = link; // shortcut: manche Browser blockieren das ohne Tippen, dann hilft der Knopf
+  } else {
+    document.getElementById("ohneCode").hidden = false;
+  }
+</script>
+</main></body></html>
