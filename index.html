@@ -4,15 +4,117 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zischi – die Aufguss-App</title>
+<meta name="description" content="Zischi zeigt den Aufgussplan deiner Sauna, deines Spas, Fitnessstudios oder Vereins: alle Aufgüsse auf einen Blick, mit Zeit, Düften, Intensität und Aufgussmeister.">
+<link rel="icon" href="favicon.png" type="image/png">
 <style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#F0E5C7;color:#25382e;margin:0;line-height:1.6;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}
-  main{padding:32px 20px}
-  h1{color:#284f3d;font-size:44px;letter-spacing:4px;margin:0 0 8px}
-  a{color:#284f3d;margin:0 10px}
+  :root{--bg:#f7f4ee;--card:#faf8f5;--green:#284f3d;--text:#25382e;--muted:#566055;--line:#e1e1d6;--cream:#F0E5C7}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:var(--green)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  .hero{position:relative;color:#fff;background:#1d2e26 url("saunaruhe.jpg") center/cover no-repeat}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,32,25,.55) 0%,rgba(18,32,25,.78) 100%)}
+  .hero .wrap{position:relative;padding-top:28px;padding-bottom:88px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:4px;font-size:18px}
+  .brand img{width:44px;height:44px;border-radius:50%;background:var(--cream)}
+  .hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:clamp(34px,6vw,60px);line-height:1.1;margin:72px 0 16px;max-width:15em}
+  .hero p.lead{font-size:clamp(17px,2.4vw,21px);max-width:34em;margin:0 0 28px;color:#f0f2ee}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:14px 24px;border-radius:12px}
+  .btn.primary{background:var(--cream);color:var(--green)}
+  .btn.ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+  .badge{display:inline-block;margin-top:26px;font-size:14px;color:#e6ebe6}
+
+  section{padding:64px 0 0}
+  h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;color:var(--green);font-size:clamp(26px,4vw,34px);margin:0 0 10px}
+  .intro{color:var(--muted);margin:0 0 28px;max-width:40em}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .card h3{margin:0 0 6px;font-size:18px;color:var(--green)}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .pro{background:var(--green);color:#fff;border-radius:20px;padding:32px;display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:center}
+  .pro h2{color:#fff}
+  .pro p{margin:0 0 14px;color:#e6ebe6}
+  .pro ul{margin:0;padding:0;list-style:none}
+  .pro li{padding:8px 0 8px 28px;position:relative;border-bottom:1px solid rgba(255,255,255,.18)}
+  .pro li:last-child{border-bottom:0}
+  .pro li::before{content:"✓";position:absolute;left:0;color:var(--cream);font-weight:700}
+  .steps{counter-reset:s;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));padding:0;margin:0;list-style:none}
+  .steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 22px 66px;position:relative;color:var(--muted);font-size:15px}
+  .steps li::before{content:counter(s);position:absolute;left:20px;top:20px;width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .steps b{display:block;color:var(--green);font-size:17px;margin-bottom:2px}
+  .kontakt{text-align:center}
+  .kontakt .btn{background:var(--green);color:#fff}
+  footer{margin-top:72px;padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;text-align:center}
+  footer a{margin:0 10px}
+  :focus-visible{outline:3px solid #a9742a;outline-offset:2px}
 </style>
 </head>
-<body><main>
-<h1>Zischi</h1>
-<p>Der Aufgussplan für Saunen, Spas, Fitnessstudios und Vereine.</p>
-<p><a href="datenschutz.html">Datenschutz</a> · <a href="impressum.html">Impressum</a></p>
-</main></body></html>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><img src="logo.png" alt="" width="44" height="44">ZISCHI</div>
+    <h1>Dein Aufgussplan. Immer dabei.</h1>
+    <p class="lead">Alle Aufgüsse deiner Sauna, deines Spas, Fitnessstudios oder Vereins auf einen Blick: mit Uhrzeit, Düften, Intensität und Aufgussmeister.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:Oliotb@gmail.com?subject=Pro-Code%20f%C3%BCr%20Zischi%20anfragen">Pro-Code anfragen</a>
+      <a class="btn ghost" href="#einrichtungen">Für Einrichtungen</a>
+    </div>
+    <span class="badge">Android · bald im Google Play Store</span>
+  </div>
+</header>
+
+<main>
+<section id="gaeste"><div class="wrap">
+  <h2>Für Gäste und Mitglieder</h2>
+  <p class="intro">Statt Aushang und Nachfragen: Der Plan deiner Einrichtung ist immer aktuell auf deinem Handy.</p>
+  <div class="grid">
+    <div class="card"><h3>Der Plan des Tages</h3><p>Alle Aufgüsse nach Tagen und Saunen sortiert. Mit einem Wisch gelangst du in die nächste Woche.</p></div>
+    <div class="card"><h3>Alle Details</h3><p>Dauer, Temperatur, Intensität, Düfte und wer den Aufguss macht, bevor du in die Sauna gehst.</p></div>
+    <div class="card"><h3>Saunainfo</h3><p>Öffnungszeiten, Kontakt und Fotos der Saunen deiner Einrichtung.</p></div>
+  </div>
+</div></section>
+
+<section id="einrichtungen"><div class="wrap">
+  <h2>Für Einrichtungen</h2>
+  <p class="intro">In wenigen Minuten eingerichtet, ohne eigene Technik und ohne Server.</p>
+  <ol class="steps">
+    <li><b>Einrichtung anlegen</b>Konto erstellen, Namen der Einrichtung eintragen, fertig.</li>
+    <li><b>Aufgüsse planen</b>Saunen, Zeiten, Düfte und Aufgussmeister eintragen.</li>
+    <li><b>Mitglieder einladen</b>Neue Mitglieder treten per Code oder QR-Code bei, den du in der App zeigst.</li>
+  </ol>
+</div></section>
+
+<section id="pro"><div class="wrap">
+  <div class="pro">
+    <div>
+      <h2>Zischi Pro</h2>
+      <p>Zischi ist zum Ausprobieren kostenlos. Mit Pro verwaltest du deine Einrichtung vollständig. Du bekommst deinen Pro-Code auf Anfrage per E-Mail.</p>
+      <a class="btn primary" href="mailto:Oliotb@gmail.com?subject=Pro-Code%20f%C3%BCr%20Zischi%20anfragen">Pro-Code anfragen</a>
+    </div>
+    <ul>
+      <li>Aufgussmeister hinzufügen und verwalten</li>
+      <li>Saunen hinzufügen und verwalten</li>
+      <li>Regelmäßige Aufgüsse anlegen</li>
+      <li>Eigenes Logo und Saunafotos</li>
+      <li>Einrichtungsdetails: Adresse, Kontakt, Social Media</li>
+      <li>Statistik zu den Aufgüssen</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="kontakt"><div class="wrap">
+  <h2>Fragen?</h2>
+  <p class="intro" style="margin-left:auto;margin-right:auto">Schreib uns, wir antworten gern.</p>
+  <a class="btn" href="mailto:Oliotb@gmail.com">Oliotb@gmail.com</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <a href="datenschutz.html">Datenschutz</a> · <a href="impressum.html">Impressum</a>
+  <div style="margin-top:8px">© 2026 Zischi</div>
+</div></footer>
+</body>
+</html>
